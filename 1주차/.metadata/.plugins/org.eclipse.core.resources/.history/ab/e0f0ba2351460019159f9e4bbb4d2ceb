@@ -1,0 +1,23 @@
+package Q19;
+
+public class Account {
+	Account(){
+		static final int MIN_BALANCE=0;
+		static final int MAX_BALANCE=1000000;
+	}
+	
+	private int balance;
+	
+	
+	public int getBalance() {
+		if (balance>=0 && balance<=1000000) 
+			return balance;
+		else
+			return ;
+	}
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+	
+	
+}

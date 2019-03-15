@@ -1,0 +1,11 @@
+package Q19;
+
+public class Account {
+	private int balance;
+	Account(){
+		int balance;
+		int MIN_BALANCE=0;
+		int MAX_BALANCE=1000000;
+	}
+	
+}

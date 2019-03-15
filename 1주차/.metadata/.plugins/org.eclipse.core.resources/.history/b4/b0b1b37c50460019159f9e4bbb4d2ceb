@@ -1,0 +1,8 @@
+package Q19;
+
+public class Account {
+	Account(){
+		int balance;
+		int MIN_BALANCE=
+	}
+}

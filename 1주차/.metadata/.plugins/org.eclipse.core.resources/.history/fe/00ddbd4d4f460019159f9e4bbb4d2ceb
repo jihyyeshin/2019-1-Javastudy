@@ -1,0 +1,10 @@
+
+public class ShopServiceExample {
+	private String name;
+
+	public static void main(String[] args) {
+		ShopService obj1 = ShopService.getInstance();
+		ShopService obj1 = ShopService.getInstance();
+
+	}
+}

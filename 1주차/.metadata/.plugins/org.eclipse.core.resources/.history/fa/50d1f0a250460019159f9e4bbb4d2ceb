@@ -1,0 +1,19 @@
+package Q19;
+
+public class Account {
+	Account(){
+		 static intMIN_BALANCE=0;
+		int MAX_BALANCE=1000000;
+	}
+	
+	private int balance;
+	
+	public int getBalance() {
+		return balance;
+	}
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+	
+	
+}

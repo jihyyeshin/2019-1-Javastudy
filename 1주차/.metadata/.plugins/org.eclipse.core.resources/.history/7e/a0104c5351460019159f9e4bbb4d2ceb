@@ -1,0 +1,5 @@
+package Q20;
+
+public class Account {
+	private String ano;
+}
