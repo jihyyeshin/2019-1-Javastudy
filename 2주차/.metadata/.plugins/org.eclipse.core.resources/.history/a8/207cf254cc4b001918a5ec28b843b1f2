@@ -1,0 +1,23 @@
+
+public class Anonymous {
+	Vehicle field= new Vehicle(){
+		string vehicle;
+		@Override
+		void run() {
+			System.out.println(vehicle+"가 달립니다");
+		}
+	};
+
+	void method1() {
+		Vehicle localVar = new Vehicle(){
+			
+		};
+				
+		localVar.run();
+	}
+
+}
+
+void method2(Vehicle v) {
+		v.run();
+}

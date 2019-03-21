@@ -1,0 +1,18 @@
+
+public class Chatting {
+	void startChat(String chatId) {
+		String nickName=null;
+		nickName=chatId;
+		Chat chat=new Chat() {
+			@Override
+			public void start() {
+				while(true) {
+					String inputData="¾È³ç";
+					String message="["+nickName+"]"+inputData;
+					
+				}
+			}
+		}
+		
+	}
+}

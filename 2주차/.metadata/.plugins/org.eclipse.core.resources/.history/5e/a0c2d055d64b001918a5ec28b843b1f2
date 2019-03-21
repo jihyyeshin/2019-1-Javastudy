@@ -1,0 +1,5 @@
+/*9Àå 7¹ø*/
+
+public interface Vehicle {
+	public void run();
+}

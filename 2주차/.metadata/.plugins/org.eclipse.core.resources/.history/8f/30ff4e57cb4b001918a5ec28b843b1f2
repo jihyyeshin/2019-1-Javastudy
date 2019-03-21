@@ -1,0 +1,8 @@
+
+public class Anonymous {
+	Vehicle field=
+	void method1() {
+		Vehicle localVar=
+		localVar.run();
+	}
+}

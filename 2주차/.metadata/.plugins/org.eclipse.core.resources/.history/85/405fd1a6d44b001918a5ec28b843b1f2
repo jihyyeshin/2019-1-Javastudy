@@ -1,0 +1,15 @@
+import java.time.format.DateTimeFormatter;
+
+public class DatePrintExample {
+	public static void main(String[] args) {
+		Date now=new Date();
+		
+		String nowString=now.format(dtf);
+		System.out.println(nowString);
+		
+	}
+	
+}
+class Date() {
+	
+}

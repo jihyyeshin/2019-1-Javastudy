@@ -1,0 +1,11 @@
+
+public class SplitExample {
+	public static void main(String[] args) {
+		String str="아이디, 이름, 패스워드";
+		//split사용
+		String[] strs=str.split(",");
+		
+		System.out.println();
+		//stringtokenizer사용
+	}
+}

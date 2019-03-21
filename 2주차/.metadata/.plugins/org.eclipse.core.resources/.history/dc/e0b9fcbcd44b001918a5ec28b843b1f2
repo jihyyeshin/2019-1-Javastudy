@@ -1,0 +1,12 @@
+import java.time.format.DateTimeFormatter;
+
+public class DatePrintExample {
+	public static void main(String[] args) {
+		Date now=new Date();
+		DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분");		
+		String nowString=.format(dtf);
+		System.out.println(nowString);
+		
+	}
+	
+}

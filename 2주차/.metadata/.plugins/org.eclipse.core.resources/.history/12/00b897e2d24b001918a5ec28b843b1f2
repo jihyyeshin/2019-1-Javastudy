@@ -1,0 +1,12 @@
+import java.util.regex.Pattern;
+
+/*11Àå 10¹ø*/
+
+public class PatternWatcherExample {
+	public static void main(String[] args) {
+		String id="5Angel1004";
+		String regExp=;
+		boolean isMatch=Pattern.matches(regExp, id);
+		
+	}
+}

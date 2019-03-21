@@ -1,0 +1,5 @@
+
+public class hello {
+	String name=null;
+	name="hi";
+}

@@ -1,0 +1,12 @@
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+public class DatePrintExample {
+	public static void main(String[] args) {
+		Date now=new Date();
+		String nowString=now.toString()
+		System.out.println(nowString);
+		
+	}
+	
+}

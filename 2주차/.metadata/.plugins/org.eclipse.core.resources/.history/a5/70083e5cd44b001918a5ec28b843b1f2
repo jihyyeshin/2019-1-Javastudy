@@ -1,0 +1,8 @@
+
+public class DatePrintExample {
+	public static void main(String[] args) {
+		Date now=new Date();
+		
+		
+	}
+}
