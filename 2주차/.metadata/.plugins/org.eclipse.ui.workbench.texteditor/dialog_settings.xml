@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item value="692" key="DIALOG_X_ORIGIN"/>
+		<item value="362" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="&#x0D;&#x0A;public class Anonymous {&#x0D;&#x0A;&#x09;Vehicle field = new Vehicle() {&#x0D;&#x0A;&#x09;&#x09;@Override&#x0D;&#x0A;&#x09;&#x09;public void run() {&#x0D;&#x0A;&#x09;&#x09;&#x09;System.out.println(&quot;자전거가 달립니다&quot;);&#x0D;&#x0A;&#x09;&#x09;}&#x0D;&#x0A;&#x09;};&#x0D;&#x0A;&#x0D;&#x0A;&#x09;void method1() {&#x0D;&#x0A;&#x09;&#x09;Vehicle localVar = new Vehicle() {&#x0D;&#x0A;&#x09;&#x09;&#x09;@Override&#x0D;&#x0A;&#x09;&#x09;&#x09;public void run() {&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;System.out.println(&quot;승용차가 달립니다&quot;);&#x0D;&#x0A;&#x09;&#x09;&#x09;}&#x0D;&#x0A;&#x09;&#x09;};&#x0D;&#x0A;&#x0D;&#x0A;&#x09;&#x09;localVar.run();&#x0D;&#x0A;&#x09;};&#x0D;&#x0A;&#x0D;&#x0A;&#x09;void method2(Vehicle v) {&#x0D;&#x0A;&#x09;&#x09;v.run();&#x0D;&#x0A;&#x09;}&#x0D;&#x0A;}" key="selection"/>
+		<list key="findhistory">
+			<item value="&#x0D;&#x0A;public class Anonymous {&#x0D;&#x0A;&#x09;Vehicle field = new Vehicle() {&#x0D;&#x0A;&#x09;&#x09;@Override&#x0D;&#x0A;&#x09;&#x09;public void run() {&#x0D;&#x0A;&#x09;&#x09;&#x09;System.out.println(&quot;자전거가 달립니다&quot;);&#x0D;&#x0A;&#x09;&#x09;}&#x0D;&#x0A;&#x09;};&#x0D;&#x0A;&#x0D;&#x0A;&#x09;void method1() {&#x0D;&#x0A;&#x09;&#x09;Vehicle localVar = new Vehicle() {&#x0D;&#x0A;&#x09;&#x09;&#x09;@Override&#x0D;&#x0A;&#x09;&#x09;&#x09;public void run() {&#x0D;&#x0A;&#x09;&#x09;&#x09;&#x09;System.out.println(&quot;승용차가 달립니다&quot;);&#x0D;&#x0A;&#x09;&#x09;&#x09;}&#x0D;&#x0A;&#x09;&#x09;};&#x0D;&#x0A;&#x0D;&#x0A;&#x09;&#x09;localVar.run();&#x0D;&#x0A;&#x09;};&#x0D;&#x0A;&#x0D;&#x0A;&#x09;void method2(Vehicle v) {&#x0D;&#x0A;&#x09;&#x09;v.run();&#x0D;&#x0A;&#x09;}&#x0D;&#x0A;}"/>
+		</list>
+	</section>
+</section>
