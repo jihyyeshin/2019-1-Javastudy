@@ -44,7 +44,7 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		String name = getUserName();
-		name = "hello";
+		//name = "hello";
 		Example ex = () -> {
 			return name;
 		};
