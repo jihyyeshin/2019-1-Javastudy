@@ -10,7 +10,7 @@ public class Main implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-				System.out.println("?");
+				//System.out.println("?");
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				System.out.println(e);
