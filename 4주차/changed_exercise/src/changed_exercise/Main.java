@@ -63,26 +63,65 @@ public class Main {
 		System.out.println("2: 추가하기");
 		while(true) {//계속해서 조회, 추가. 종료되지 않는다
 			Scanner sc=new Scanner(System.in);
+			/* Scanner vs BufferedReader
+			 * 
+			 * Scanner
+			 * InputStreamReader: character로 입력
+			 * BufferedReader: 사용자가 요청할 때 마다 매번 읽어오는 것이 아닌, 일정량 사이즈로 한 번에 읽어온 후 버퍼에 보관
+			 * 사용자가 요구할 때 버퍼에서 읽어온다. 속도가 향상되고, 시간의 부하를 줄인다.
+			 * 문자열으로 읽어온다. parsing 필요
+			 * 
+			 * BufferedReader be = new BufferedReader(new InputStreamReader(System.in));
+			 * br.readLine();
+			 * br.read();
+			 * 
+			 * */
+			
 			System.out.println("입력: ");
 			
 			int number=sc.nextInt();//조회, 또는 추가를 선택한다	
 			
 			//////////////////
-			Runnable runnable=()->{
+			/* thread 클래스
+			 * 
+			 * 자바에서 쓰레드를 작성하는 방법에는 2가지가 있다. 
+			 * 1. thread 클래스에서, run()메서드를 override해주어 사용한다.
+			 * public class MyThread extends Thread
+			 * 
+			 * 2. runnable 인터페이스를 구현한다. 
+			 * public class MyRunnable implements Runnable
+			 * Runnable인터페이스의 경우, 구현할 메소드가 run()하나뿐인 함수형 인터페이스이다.
+			 * 
+			 * 1, 2는 쓰레드의 실행 방법이 다르다.
+			 * 1: 해당 객체에서 start() 메서드를 직접 호출한다.
+			 * Thread t=new MyThread();
+			 * t.start();
+			 * 2: 생성자를 통해 별도의 Thread객체를 생성한 후에 start() 메서드를 호출한다.
+			 * Runnable r=new MyRunnable();
+			 * Thread t1=new Thread(r);
+			 * t1.start();
+			 * 
+			 * 그럼 1이 더 간단하니까 1을 쓰면 되지 않나요? (Thread vs Runnable)
+			 * Java에서는 다중 상속을 허용하지 않는다. 따라서 Thread 클래스를 확장하는 클래스는  다중 클래스를 상속받을 수 없다. 
+			 * 하지만, Runnable 인터페이스는 다른 인터페이스를 구현할 수 있고, 다른 클래스도 상속받을 수 있다.
+			 * 따라서 확장성이 중요하다면 Runnable을 사용한다!
+			 * */
+			
+			Runnable runnable=()->{//람다를 사용하면 runnable을 더 간단하게 구현한다.
 				try {
-					Thread.sleep(10000);
-					if(list!=null & list_search!=null) {
-						Iterator<Integer> it=list_search.iterator();//iterator 생성
-					
+					Thread.sleep(10000);//10초에 한 번
+					if(list!=null & list_search!=null) {//둘 다 null이라면, 확인할 필요가 없다!
+						Iterator<Integer> it=list_search.iterator();//iterator 생성, iterator객체를 받아서 for문을 돌린다(hasNext)
+						//list_search는 찾아야 할 애들
 						while(it.hasNext()) {
-							int check=it.next();
-							if(list.containsKey(check)) {
+							int check=it.next();//찾아야 할 key
+							if(list.containsKey(check)) {//찾아야 할 key가 추가되어 데이터를 찾은 경우
 								System.out.println("해당 데이터를 찾았습니다");
 								System.out.println("학생 이름: "+list.get(check).getName()+" ");
 								System.out.println("학년: "+list.get(check).getGrade()+" ");
 								System.out.println("주소: "+list.get(check).getAddress()+" ");
 								System.out.println("전화번호"+list.get(check).getNumber());
-								list_search.remove(check);
+								list_search.remove(check);//찾았으니 삭제한다.
 							}
 							
 						}
@@ -93,9 +132,10 @@ public class Main {
 			};
 			Thread thread=new Thread(runnable);
 			thread.start();
-			sc.nextLine();
 			//////////////////
 			
+			sc.nextLine();//이 친구를 해줘야 스캐너에 \n가 남지 않는다.
+
 			if(number==1) {//조회를 선택했을 때
 				//조회하기
 				//전화번호 입력 받기, 전화번호가 키값이기 때문에 
