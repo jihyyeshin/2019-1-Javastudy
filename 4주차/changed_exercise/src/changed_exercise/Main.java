@@ -3,8 +3,7 @@ package changed_exercise;
 import java.util.*;
 
 public class Main {
-	/*
-	 * collection에
+	/* collection에
 	 * list, map, set계열 3가지가 존재함. 이들은 모두 구현되지 않은 interface이다.
 	 * 각각은 자신들만의 고유한 특징을 가지고 있다.
 	 * 
@@ -49,19 +48,26 @@ public class Main {
 	 * static 변수는 또한 호출시간이 짧기 때문에 인스턴스 메소드안에서 사용되지 않는다면 static으로 선언하는 것을 추천한다!
 	 * */
 	static HashMap<Integer, Student>list =new HashMap<Integer, Student>();
-	//HashMap의 사용 용도 : 
+	//HashMap의 사용 용도 : 학생 정보 저장
 	static HashSet<Integer> list_search=new HashSet<Integer>();
-	//HashSet의 사용 용도 : 
+	//HashSet의 사용 용도 : 찾아야 하는 학생 정보 저장(찾지 못한다면 추가될 때 까지 계속 search)
+	
+	/* 여기서 HashSet을 사용하는 이유?
+	 * 앞서 본 것 처럼 ArrayList를 사용했다면 중복된 정보를 계속해서 저장할 것. 중복된 정보가 계속 저장되면 Thread가 계속해서 중복된 값을 찾을 것이다.
+	 * 하지만, HashSet은 Set계열의 특성상 중복 데이터를 허용하지 않음. 따라서 HashSet을 사용하게 된다.
+	 * */
+	
 	public static void main(String[] args) {
 		System.out.println("DB TERM PROJECT");
 		System.out.println("1: 조회하기");
 		System.out.println("2: 추가하기");
-		while(true) {
+		while(true) {//계속해서 조회, 추가. 종료되지 않는다
 			Scanner sc=new Scanner(System.in);
 			System.out.println("입력: ");
 			
 			int number=sc.nextInt();//조회, 또는 추가를 선택한다	
 			
+			//////////////////
 			Runnable runnable=()->{
 				try {
 					Thread.sleep(10000);
@@ -88,6 +94,7 @@ public class Main {
 			Thread thread=new Thread(runnable);
 			thread.start();
 			sc.nextLine();
+			//////////////////
 			
 			if(number==1) {//조회를 선택했을 때
 				//조회하기
@@ -95,15 +102,15 @@ public class Main {
 				int input=sc.nextInt();
 				
 				//키 값 찾기
-				if(list.containsKey(input)) {
+				if(list.containsKey(input)) {//해당 키를 가지고 있는지 찾는다. HashMap의 메소드, 가지고 있다면 true를 반환한다.
 					System.out.println("해당 데이터를 찾았습니다.");
 					System.out.println("학생 이름: "+list.get(input).getName());
 					System.out.println("학년: "+list.get(input).getGrade());
 					System.out.println("주소: "+list.get(input).getAddress());
-					System.out.println("전화번호: "+list.get(input).getNumber());
+					System.out.println("전화번호: "+list.get(input).getNumber());//해당 번호를 출력한다
 				}else {
 					System.out.println("해당 데이터를 찾을 수 없습니다");
-					list_search.add(input);
+					list_search.add(input);//데이터를 찾을 수 없는 경우에는 list_search에 추가시킨다. 이를 찾아내야 한다는 뜻! 나중에 추가되었을 때 다른 thread에서 찾아서 출력해준다.
 				}
 				
 			}
@@ -112,22 +119,22 @@ public class Main {
 				//학생 정보 입력
 				System.out.print("추가하기: ");
 				String input=sc.nextLine();
-				StringTokenizer st=new StringTokenizer(input);
-				String student[]=new String[4];
+				StringTokenizer st=new StringTokenizer(input);//string tokenizer을 이용하여 input을 나눈다. 한 줄에 입력하기 때문에
+				String student[]=new String[4];//각각의 정보를 저장해둘 것
 				int i=0;
 				while(st.hasMoreTokens()) {
-					student[i]=(String)st.nextToken();
+					student[i]=(String)st.nextToken();//저장
 					i++;
 				}
 				if(list.containsKey(Integer.parseInt(student[3]))) {
 					System.out.println("데이터가 이미 존재합니다.");
-					continue;
+					continue;//데이터가 이미 존재한다면, 객체를 생성하지 않고(저장하지 않고) continue
 				}
 				
 				//student 객체 생성
 				Student student_info=new Student(student);
 				//list 추가
-				list.put(Integer.parseInt(student[3]), student_info);
+				list.put(Integer.parseInt(student[3]), student_info);//list에 정보를 추가시킨다.
 				
 				System.out.println("추가 완료");
 			}
