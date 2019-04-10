@@ -3,9 +3,11 @@ package changed_exercise;
 import java.util.*;
 
 public class Main {
-	/* collection에
-	 * list, map, set계열 3가지가 존재함. 이들은 모두 구현되지 않은 interface이다.
+	/* collections framework에는 collection과 map이 있고,
+	 * collection에는 list, set, queue계열 3가지가 존재함. 이들은 모두 구현되지 않은 interface이다.
 	 * 각각은 자신들만의 고유한 특징을 가지고 있다.
+	 * 
+	 * Queue
 	 * 
 	 * List
 	 * 순서를 가지며, 동일한 데이터의 중복이 가능하다.
