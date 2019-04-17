@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.IntStream;
 
 /* 매핑
  * 중간 처리 기능으로, 스트림의 요소를 다른 요소로 대처한다.
@@ -37,6 +38,25 @@ class SortingExample{
 	public static void main(String[] args) {
 		//숫자 요소인 경우
 		IntStream is=Arrays.stream(new int[] {5, 3, 2, 1, 4});
+		is
+		 .sorted()
+		 .forEach(n->System.out.println(n+","));
+		System.out.println();
+		//객체요소인 경우
+		List<Student1> sl=Arrays.asList(
+				new Student1("홍", 30),
+				new Student1("신", 10),
+				new Student1("유", 20)
+				);
 		
+		sl.stream()
+			.sorted()//정수를 기준으로 오름차순 정렬
+			// sorted ((a, b)->a.compareTo(b)); & sorted(Comparator.naturalOrder()); 사용 가능
+			.forEach(s->System.out.print(s.getScore()+","));
+		System.out.println();
+		
+		sl.stream()
+			.sorted(Comparator.reverseOrder())
+			.forEach(s->System.out.print(s.getScore()+","));
 	}
 }
