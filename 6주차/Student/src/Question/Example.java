@@ -63,7 +63,7 @@ public class Example {
 		List<Student> sl = Arrays.asList(new Student("가나", Student.Fresh, 100),
 										new Student("다라", Student.Junior, 88), 
 										new Student("마바", Student.Junior, 15),
-										new Student("사아", Student.Junior, 99), 
+										new Student("사아", Student.Junior, 99),
 										new Student("자차", Student.Sopho, 49),
 										new Student("카타", Student.Junior, 20), 
 										new Student("파하", Student.Senior, 70));
