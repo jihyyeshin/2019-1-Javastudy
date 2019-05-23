@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ 
+
+ <!-- myBatis를 통해 DB를 다룰때 사용할 파일이다. 실행하고자 할 쿼리 모음 -->
+
+ 
+
+<mapper namespace="Test">
+
+     
+
+    <select id="getCount" resultType="int">
+
+     
+
+        SELECT
+
+            count(*)
+
+        FROM
+
+            member
+
+     
+
+    </select>
+
+     
+
+     
+
+    <select id="getContents" resultType="hashmap">
+
+     
+
+        SELECT
+
+            id, name
+
+        FROM
+
+            member
+
+        WHERE
+
+            id = 'admin'
+
+     
+
+    </select>
+
+     
+
+     
+
+    <select id="getList" resultType="hashmap">
+
+     
+
+        SELECT
+
+            id, name
+
+        FROM
+
+            member
+
+     
+
+    </select>
+
+     
+
+     
+
+    <select id="getCountP" parameterType="hashmap" resultType="int">
+
+     
+
+        SELECT
+
+            count(*)
+
+        FROM
+
+            member
+
+        WHERE
+
+            name = #{name}
+
+     
+
+    </select>
+
+     
+
+     
+
+    <select id="getContentsP" parameterType="hashmap" resultType="hashmap">
+
+     
+
+        SELECT
+
+            id, name
+
+        FROM
+
+            member
+
+        WHERE
+
+            id = #{name} and age = #{age}
+
+     
+
+    </select>
+
+ 
+
+ 
+
+</mapper>
