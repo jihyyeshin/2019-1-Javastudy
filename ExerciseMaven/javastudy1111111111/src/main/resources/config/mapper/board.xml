@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.javastudy.mapper.BoardMapper">
+	<resultMap id="boardMap" type="board">
+		<result column="no" property="no" />
+		<result column="writer" property="writer" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="reg_date" property="regDate" />
+	</resultMap>
+
+	<select id="selectBoard" resultMap="boardMap">
+		select *
+		from tb_board
+	</select>
+	<insert id="insertBoard" parameterType="board">
+		insert into
+		tb_board(title,content,writer)
+		values(#{title},#{content},#{writer})
+	</insert>
+	<select id="detailBoard" parameterType="int" resultType="board">
+		select *
+		from tb_board
+		where no=#{no}
+	</select>
+	<delete id="deleteBoard" parameterType="int">
+		delete from tb_board
+		where no=#{no}
+	</delete>
+	<update id="editBoard" parameterType="board">
+		update tb_board
+		set title=#{title}, content=#{content}, writer=#{writer} 
+		where no=#{no}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
