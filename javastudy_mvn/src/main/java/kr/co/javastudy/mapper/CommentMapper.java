@@ -4,4 +4,5 @@ import kr.co.javastudy.vo.Comment;
 
 public interface CommentMapper {
 	List<Comment> selectComment();
+	void insertComment(Comment comment);
 }

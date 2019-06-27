@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/insertForm.do")
 public class InsertFormBoardController extends HttpServlet {
-
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/insertForm.jsp").forward(request, response);

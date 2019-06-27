@@ -4,6 +4,7 @@
 <mapper namespace="kr.co.javastudy.mapper.CommentMapper">
 	<resultMap id="commentMap" type="comment">
 		<result column="no" property="no" />
+		<result column="board_no" property="board_no"/>
 		<result column="content" property="content" />
 	</resultMap>
 
@@ -12,4 +13,15 @@
 		  from tb_comment
 		 order by no desc
 	</select>
+	
+	<select id="selectCommentByNo" resultMap="commentMap">
+		select *
+		from comment
+		where board_no=#{no}
+	</select>
+	
+	<insert id="insertBoard" parameterType="comment">
+		insert into comment(board_no, no)
+		values (#{board_no}, #{content})
+	</insert>
 </mapper>

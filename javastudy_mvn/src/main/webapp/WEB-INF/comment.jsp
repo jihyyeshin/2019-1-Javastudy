@@ -19,7 +19,7 @@
                             <textarea style="width:500px" rows="3" cols="30" id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>
                             <br>
                             <div>
-                                <a href='#' onClick="fn_comment('${result.code }')">등록</a>
+                                <a href='#' onClick="fn_comment()">등록</a>
                             </div>
                         </td>
                     </tr>
@@ -38,10 +38,12 @@
  
 <script>
 //댓글 등록
-function fn_comment(code){
+function fn_comment(){
+	alert("??");
+
     $.ajax({
         type:'POST',
-        url : "<c:url value='/addComment.do'/>",
+        url : "<c:url value='addComment.do'/>",
         data:{
         	comment:$("#comment").val()
         },
@@ -62,11 +64,14 @@ function fn_comment(code){
  
 //초기 로딩 시 댓글 불러오기
 $(function(){
+	alert("??");
+
     getCommentList();
 });
  
 //댓글 불러오기 ajax
 function getCommentList(){
+	alert("??");
     $.ajax({
         type:'GET',
         url : "<c:url value='comment.do'/>",
@@ -74,7 +79,6 @@ function getCommentList(){
         data:$("#commentForm").serialize(),
         contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
         success : function(data){
-            
             var html = "";
             var cCnt = data.length;
             

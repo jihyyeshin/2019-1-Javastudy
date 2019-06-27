@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.javastudy.common.MyAppSqlConfig;
 import kr.co.javastudy.mapper.CommentMapper;
 
-@WebServlet("/comment.do")
+@WebServlet("/comment.do") 
 public class CommentController extends HttpServlet{
 	private CommentMapper mapper;
 	public CommentController() {
