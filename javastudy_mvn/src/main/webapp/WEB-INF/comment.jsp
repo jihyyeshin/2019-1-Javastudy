@@ -13,20 +13,20 @@
                 <span><strong>Comments</strong></span> <span id="cCnt"></span>
             </div>
             <div>
-                <table class="table">                    
-                    <tr>
-                        <td>
-                            <textarea style="width:500px" rows="3" cols="30" id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>
-                            <br>
-                            <div>
-                                <a href='#' onClick="fn_comment()">등록</a>
-                            </div>
-                        </td>
-                    </tr>
+                <table class="table">
+                  <tr>
+                    <td>
+                        <textarea style="width:500px" rows="3" cols="30" id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>
+                        <br>
+                        <div>
+                           <a href='#' onClick="fn_comment()">등록</a>
+                        </div>
+                     </td>
+                  </tr>
                 </table>
             </div>
         </div>
-        <input type="hidden" id="b_code" name="b_code" value="${result.code }" />        
+        <input type="hidden" id="b_code" name="b_code" value="${result.code}" />        
     </form>
 </div>
 <div class="container">
@@ -43,7 +43,7 @@ function fn_comment(){
 
     $.ajax({
         type:'POST',
-        url : "<c:url value='addComment.do'/>",
+        url : "/addComment.do?no=${board.no}",
         data:{
         	comment:$("#comment").val()
         },
@@ -74,7 +74,7 @@ function getCommentList(){
 	alert("??");
     $.ajax({
         type:'GET',
-        url : "<c:url value='comment.do'/>",
+        url : "/comment.do?no=${board.no}",
         dataType : "json",
         data:$("#commentForm").serialize(),
         contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
@@ -85,7 +85,7 @@ function getCommentList(){
             if(data.length > 0){
                 for(i=0; i<data.length; i++){
                     html += "<div>";
-                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
+                    html += "<div><table class='table'>";
                     html += data[i].comment + "<tr><td></td></tr>";
                     html += "</table></div>";
                     html += "</div>";
