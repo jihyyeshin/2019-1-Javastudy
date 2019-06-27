@@ -20,8 +20,8 @@
 		where board_no=#{no}
 	</select>
 	
-	<insert id="insertBoard" parameterType="comment">
-		insert into comment(board_no, no)
+	<insert id="insertComment" parameterType="comment">
+		insert into comment(board_no, content)
 		values (#{board_no}, #{content})
 	</insert>
 </mapper>

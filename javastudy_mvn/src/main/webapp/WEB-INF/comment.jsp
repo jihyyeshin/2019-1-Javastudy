@@ -20,6 +20,8 @@
                         <br>
                         <div>
                            <a href='#' onClick="fn_comment()">등록</a>
+                           <a href='#' >수정</a>
+                           <a href='#' >삭제</a>
                         </div>
                      </td>
                   </tr>
@@ -39,21 +41,17 @@
 <script>
 //댓글 등록
 function fn_comment(){
-	alert("??");
-
+	//alert("??");
     $.ajax({
         type:'POST',
-        url : "/addComment.do?no=${board.no}",
+        url : "addComment.do",
         data:{
         	comment:$("#comment").val()
         },
         success : function(data){
         	alert("댓글 등록 완료");
-            if(data=="success")
-            {
-                getCommentList();
-                $("#comment").val("");
-            }
+            getCommentList();
+            $("#comment").val("");
         },
         error:function(request,status,error){
             //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -65,7 +63,6 @@ function fn_comment(){
 //초기 로딩 시 댓글 불러오기
 $(function(){
 	alert("??");
-
     getCommentList();
 });
  
@@ -74,13 +71,15 @@ function getCommentList(){
 	alert("??");
     $.ajax({
         type:'GET',
-        url : "/comment.do?no=${board.no}",
+        url : "comment.do",
         dataType : "json",
         data:$("#commentForm").serialize(),
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-        success : function(data){
-            var html = "";
-            var cCnt = data.length;
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8" 
+       })
+        .done(
+       		function(data){
+        	let html = "";
+            const cCnt = data.length;
             
             if(data.length > 0){
                 for(i=0; i<data.length; i++){
@@ -99,8 +98,10 @@ function getCommentList(){
             
             $("#cCnt").html(cCnt);
             $("#commentList").html(html);
-        },
-        error:function(request,status,error){}
+       	}).
+       	fail(function(request,status,error){
+       		
+       	});
     });
 }
  
