@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- comment 추가 -->
-<%@ include file="./comments.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,8 +27,8 @@
 			<td>${board.writer}</td>
 		</tr>
 	</table>
-	<p>Comments</p>
-	
+	<jsp:include page="comment.jsp"></jsp:include>
+
 	<a href="<c:url value='updateForm.do?no=${board.no}'/>">수정</a>
 	<a href="<c:url value='delete.do?no=${board.no}'/>">삭제</a>
 	<a href="<c:url value='list.do'/>">목록</a>

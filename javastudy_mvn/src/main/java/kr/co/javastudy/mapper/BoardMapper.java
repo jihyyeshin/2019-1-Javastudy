@@ -1,7 +1,6 @@
 package kr.co.javastudy.mapper;
 
 import java.util.List;
-
 import kr.co.javastudy.vo.Board;
 
 public interface BoardMapper {
