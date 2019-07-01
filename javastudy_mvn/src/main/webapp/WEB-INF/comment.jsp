@@ -19,7 +19,7 @@
                         <textarea style="width:500px" rows="3" cols="30" id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>
                         <br>
                         <div>
-                           <a href='#' onClick="fn_comment()">등록</a>
+                           <a onClick="commentEnroll()">등록</a>
                            <a href='#' >수정</a>
                            <a href='#' >삭제</a>
                         </div>
@@ -40,13 +40,13 @@
  
 <script>
 //댓글 등록
-function fn_comment(){
-	//alert("??");
+function commentEnroll(){
     $.ajax({
         type:'POST',
         url : "addComment.do",
         data:{
-        	comment:$("#comment").val()
+        	comment:$("#comment").val(),
+        	board_no:window.location.href.split("no=")[1]
         },
         success : function(data){
         	alert("댓글 등록 완료");
@@ -54,7 +54,6 @@ function fn_comment(){
             $("#comment").val("");
         },
         error:function(request,status,error){
-            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
        }
         
     });
@@ -63,47 +62,8 @@ function fn_comment(){
 //초기 로딩 시 댓글 불러오기
 $(function(){
 	alert("??");
-    getCommentList();
+    //getCommentList();
 });
- 
-//댓글 불러오기 ajax
-function getCommentList(){
-	alert("??");
-    $.ajax({
-        type:'GET',
-        url : "comment.do",
-        dataType : "json",
-        data:$("#commentForm").serialize(),
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8" 
-       })
-        .done(
-       		function(data){
-        	let html = "";
-            const cCnt = data.length;
-            
-            if(data.length > 0){
-                for(i=0; i<data.length; i++){
-                    html += "<div>";
-                    html += "<div><table class='table'>";
-                    html += data[i].comment + "<tr><td></td></tr>";
-                    html += "</table></div>";
-                    html += "</div>";
-                }
-            } else {//댓글이 없는 경우
-                html += "<div>";
-                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-                html += "</table></div>";
-                html += "</div>";
-            }
-            
-            $("#cCnt").html(cCnt);
-            $("#commentList").html(html);
-       	}).
-       	fail(function(request,status,error){
-       		
-       	});
-    });
-}
  
 </script>
  

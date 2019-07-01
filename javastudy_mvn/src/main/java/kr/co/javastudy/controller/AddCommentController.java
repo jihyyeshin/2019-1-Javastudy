@@ -22,10 +22,10 @@ public class AddCommentController extends HttpServlet {
 	}
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//System.out.println("hello");
 		request.setCharacterEncoding("utf-8");
 		Comment comment =new Comment();
 		comment.setContent(request.getParameter("comment"));
+		comment.setBoardNo(Integer.parseInt(request.getParameter("board_no")));
 		
 		mapper.insertComment(comment);
 	}
