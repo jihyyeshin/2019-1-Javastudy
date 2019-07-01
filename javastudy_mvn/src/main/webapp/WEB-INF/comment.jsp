@@ -57,23 +57,46 @@ function commentEnroll(){
     });
 }
 
-//댓글 수정
-function commentEdit(no){
-	 $.ajax({
-	        type:'POST',
-	        url : "editComment.do",
-	        data:{
-	        	no:no
-	        },
-	        success : function(data){
-	        	//alert("댓글 등록 완료");
-	            getCommentList();
-	        },
-	        error:function(request,status,error){
-	       }
-	        
-	    });
+//댓글 수정 form 생성
+function commentEditForm(no){
+	$.ajax({
+		type:'GET',
+		url:"updateCommentForm.do",
+		data:{
+		 no:no
+		},
+		dataType:"json",
+		error : function(request, status, error){
+			alert("code:"+request.status+"\n"+"error:"+error);
+		},
+		success:function(data){
+		 	var html="<div>";
+            html+="<tr><td>"+data.no+"</td>";
+            html+="<textarea style='width:500px' rows='3' cols='30' id='update' name='update' placeholder="+data.content+"></textarea>";
+        	html+="<td><input type='button' value='수정완료' onclick='updateComplete("+data.no+");'/></td>";
+		 	html+="</div>";
+			$("#"+no).html(html);
+		}
+	});
 }
+//댓글 수정
+function updateComplete(no){
+	$.ajax({
+        type:'POST',
+        url : "updateComplete.do",
+        data:{
+        	comment:$("#update").val(),
+        	no:no,
+        },
+        success : function(data){
+            getCommentList();
+        },
+        error:function(request,status,error){
+       }
+        
+    });
+}
+
 //댓글 삭제
 function commentDelete(no){
 	$.ajax({
@@ -86,7 +109,6 @@ function commentDelete(no){
             getCommentList();
         },
         error:function(request,status,error){
-    		alert("code:"+request.status+"\n"+"error:"+error);
        }
         
     });
@@ -111,21 +133,19 @@ function getCommentList(){
 	 success:function(data){
 		 var html="";
 	     if(data.length>0){
-	    	html+="<div>";
 	        html+="<div><table class='table'>";
 	        for(i=0;i<data.length;i++){
+	        	html+="<div id='"+data[i].no+"'>";
 	            html+="<tr><td>"+data[i].no+"</td><td>"+data[i].content+"</td>";
-	        	html+="<td><input type='button' value='수정' onclick='commentEdit("+data[i].no+");'/></td>";
+	        	html+="<td><input type='button' value='수정' onclick='commentEditForm("+data[i].no+");'/></td>";
 	        	html+="<td><input type='button' value='삭제' onclick='commentDelete("+data[i].no+")'/></td></tr>";
+	        	html+="</div>"
 	        }
 	        html+="</table></div>";
-            html+="</div>";
 	      }else{
-	         html+="<div>";
 	         html+="<div><table class='table'>";
 	         html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
 	         html+="</table></div>";
-	         html+="</div>";
 	      }
 	      $("#commentList").html(html);
 	 }

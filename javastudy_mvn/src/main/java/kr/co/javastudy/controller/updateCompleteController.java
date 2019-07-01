@@ -12,17 +12,20 @@ import kr.co.javastudy.common.MyAppSqlConfig;
 import kr.co.javastudy.mapper.CommentMapper;
 import kr.co.javastudy.vo.Comment;
 
-@WebServlet("/deleteComment.do")
-public class DeleteCommentController extends HttpServlet {
-	
+@WebServlet("/updateComplete.do")
+
+public class updateCompleteController extends HttpServlet{
 	private CommentMapper mapper;
 	
-	public DeleteCommentController() {
+	public updateCompleteController() {
 		mapper = MyAppSqlConfig.getSqlSession().getMapper(CommentMapper.class);
 	}
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no=Integer.parseInt(request.getParameter("no"));
-		mapper.deleteComment(no);
+		request.setCharacterEncoding("utf-8");
+		Comment comment =new Comment();
+		comment.setContent(request.getParameter("comment"));
+		comment.setNo(Integer.parseInt(request.getParameter("no")));
+		mapper.updateComment(comment);
 	}
 }

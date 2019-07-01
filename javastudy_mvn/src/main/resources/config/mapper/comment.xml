@@ -14,10 +14,16 @@
 		 order by no desc
 	</select>
 	
-	<select id="selectCommentByNo" resultMap="commentMap">
+	<select id="selectCommentByBoardNo" resultMap="commentMap">
 		select *
 		from comment
 		where board_no=#{no}
+	</select>
+	
+	<select id="selectCommentByNo" resultMap="commentMap">
+		select *
+		from comment
+		where no=#{no}
 	</select>
 	
 	<insert id="insertComment" parameterType="comment">

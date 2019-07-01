@@ -29,7 +29,7 @@ public class CommentController extends HttpServlet{
 
 		
 		PrintWriter out =response.getWriter();
-		List<Comment> comment=mapper.selectCommentByNo(no);
+		List<Comment> comment=mapper.selectCommentByBoardNo(no);
 		String result=new Gson().toJson(comment);
 		response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
