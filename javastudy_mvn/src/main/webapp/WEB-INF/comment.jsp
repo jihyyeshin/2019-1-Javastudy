@@ -21,7 +21,6 @@
                         <div>
                            <input type="button" value="등록" onclick="commentEnroll();"/>
                            <input type="button" value="수정" onclick="commentEnroll();"/>
-                           <input type="button" value="삭제" onclick="commentEnroll();"/>
                         </div>
                      </td>
                   </tr>
@@ -32,10 +31,10 @@
     </form>
 </div>
 <div class="container">
-    <form id="commentListForm" name="commentListForm" method="post">
+    <!--<form id="commentListForm" name="commentListForm" method="post">-->
         <div id="commentList">
         </div>
-    </form>
+    <!-- </form>-->
 </div>
  
 <script>
@@ -49,7 +48,7 @@ function commentEnroll(){
         	board_no:window.location.href.split("no=")[1]
         },
         success : function(data){
-        	alert("댓글 등록 완료");
+        	//alert("댓글 등록 완료");
             getCommentList();
             $("#comment").val("");
         },
@@ -66,21 +65,37 @@ $(function(){
 
 //댓글 불러오기 ajax
 function getCommentList(){
- alert("??");
+ //alert("??");
  $.ajax({
 	 type:'GET',
 	 url:"comment.do",
 	 data:{
-		 board_no:window.location.href.split("no=")[1]
-	 }
+		 no:window.location.href.split("no=")[1]
+	 },
 	 dataType:"json",
- })
-  .done(
-	function(data){
-		let html="";
-		html+=data[i].comment;
-	    $("#commentList").html(html);
-	});
+	 error : function(request, status, error){
+		alert("code:"+request.status+"\n"+"error:"+error);
+	},
+	 success:function(data){
+		 var html="";
+	     if(data.length>0){
+	    	html+="<div>";
+	        html+="<div><table class='table'>";
+	        for(i=0;i<data.length;i++){
+	            html+="<tr><td>"+i+"</td><td>"+data[i].content+"</td></tr>";
+	        }
+	        html+="</table></div>";
+            html+="</div>";
+	      }else{
+	         html+="<div>";
+	         html+="<div><table class='table'>";
+	         html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+	         html+="</table></div>";
+	         html+="</div>";
+	      }
+	      $("#commentList").html(html);
+	 }
+ });
 }
  
 </script>
