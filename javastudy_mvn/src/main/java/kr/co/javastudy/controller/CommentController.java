@@ -19,7 +19,9 @@ public class CommentController extends HttpServlet{
 	}
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("comment", mapper.selectComment());
+		System.out.println("hello");
+		int no=Integer.parseInt(request.getParameter("no"));
+		request.setAttribute("comment", mapper.selectCommentByNo(no));
 		request.getRequestDispatcher("/WEB-INF/comment.jsp").forward(request, response);
 	}
 }

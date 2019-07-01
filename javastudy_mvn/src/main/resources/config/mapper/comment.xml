@@ -10,7 +10,7 @@
 
 	<select id="selectComment" resultMap="commentMap">
 		select * 
-		  from tb_comment
+		  from comment
 		 order by no desc
 	</select>
 	

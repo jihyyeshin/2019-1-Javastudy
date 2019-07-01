@@ -19,9 +19,9 @@
                         <textarea style="width:500px" rows="3" cols="30" id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>
                         <br>
                         <div>
-                           <a onClick="commentEnroll()">등록</a>
-                           <a href='#' >수정</a>
-                           <a href='#' >삭제</a>
+                           <input type="button" value="등록" onclick="commentEnroll();"/>
+                           <input type="button" value="수정" onclick="commentEnroll();"/>
+                           <input type="button" value="삭제" onclick="commentEnroll();"/>
                         </div>
                      </td>
                   </tr>
@@ -61,9 +61,27 @@ function commentEnroll(){
  
 //초기 로딩 시 댓글 불러오기
 $(function(){
-	alert("??");
-    //getCommentList();
+    getCommentList();
 });
+
+//댓글 불러오기 ajax
+function getCommentList(){
+ alert("??");
+ $.ajax({
+	 type:'GET',
+	 url:"comment.do",
+	 data:{
+		 board_no:window.location.href.split("no=")[1]
+	 }
+	 dataType:"json",
+ })
+  .done(
+	function(data){
+		let html="";
+		html+=data[i].comment;
+	    $("#commentList").html(html);
+	});
+}
  
 </script>
  
