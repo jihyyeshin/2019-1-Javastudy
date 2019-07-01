@@ -20,7 +20,6 @@
                         <br>
                         <div>
                            <input type="button" value="등록" onclick="commentEnroll();"/>
-                           <input type="button" value="수정" onclick="commentEnroll();"/>
                         </div>
                      </td>
                   </tr>
@@ -57,7 +56,41 @@ function commentEnroll(){
         
     });
 }
- 
+
+//댓글 수정
+function commentEdit(no){
+	 $.ajax({
+	        type:'POST',
+	        url : "editComment.do",
+	        data:{
+	        	no:no
+	        },
+	        success : function(data){
+	        	//alert("댓글 등록 완료");
+	            getCommentList();
+	        },
+	        error:function(request,status,error){
+	       }
+	        
+	    });
+}
+//댓글 삭제
+function commentDelete(no){
+	$.ajax({
+        type:'POST',
+        url : "deleteComment.do",
+        data:{
+        	no:no
+        },
+        success : function(data){
+            getCommentList();
+        },
+        error:function(request,status,error){
+    		alert("code:"+request.status+"\n"+"error:"+error);
+       }
+        
+    });
+}
 //초기 로딩 시 댓글 불러오기
 $(function(){
     getCommentList();
@@ -65,7 +98,6 @@ $(function(){
 
 //댓글 불러오기 ajax
 function getCommentList(){
- //alert("??");
  $.ajax({
 	 type:'GET',
 	 url:"comment.do",
@@ -82,7 +114,9 @@ function getCommentList(){
 	    	html+="<div>";
 	        html+="<div><table class='table'>";
 	        for(i=0;i<data.length;i++){
-	            html+="<tr><td>"+i+"</td><td>"+data[i].content+"</td></tr>";
+	            html+="<tr><td>"+data[i].no+"</td><td>"+data[i].content+"</td>";
+	        	html+="<td><input type='button' value='수정' onclick='commentEdit("+data[i].no+");'/></td>";
+	        	html+="<td><input type='button' value='삭제' onclick='commentDelete("+data[i].no+")'/></td></tr>";
 	        }
 	        html+="</table></div>";
             html+="</div>";

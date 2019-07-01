@@ -24,4 +24,16 @@
 		insert into comment(board_no, content)
 		values (#{board_no}, #{content})
 	</insert>
+	
+	<delete id="deleteComment" parameterType="int">
+		delete 
+		  from comment
+		 where no = #{no}
+	</delete>
+	
+	<update id="updateComment" parameterType="comment">
+		update comment
+		   set content = #{content}
+		 where no = #{no}
+	</update>
 </mapper>
