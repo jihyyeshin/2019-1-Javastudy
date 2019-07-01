@@ -32,8 +32,6 @@ public class UpdateCommentController extends HttpServlet {
 		response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         out.print(result);
-        out.flush();        
-		//request.setAttribute("comment", mapper.selectCommentByNo(no));
-		//request.getRequestDispatcher("/WEB-INF/comment.jsp").forward(request, response);
+        out.flush();
 	}
 }

@@ -1,12 +1,15 @@
 package kr.co.javastudy.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import kr.co.javastudy.common.MyAppSqlConfig;
 import kr.co.javastudy.mapper.CommentMapper;
@@ -28,5 +31,12 @@ public class AddCommentController extends HttpServlet {
 		comment.setBoardNo(Integer.parseInt(request.getParameter("board_no")));
 		
 		mapper.insertComment(comment);
+		PrintWriter out =response.getWriter();
+
+		String result=new Gson().toJson(comment);
+		response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        out.print(result);
+        out.flush();
 	}
 }

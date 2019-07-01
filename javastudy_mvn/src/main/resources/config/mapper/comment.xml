@@ -29,6 +29,10 @@
 	<insert id="insertComment" parameterType="comment">
 		insert into comment(board_no, content)
 		values (#{board_no}, #{content})
+		 <selectKey resultType="int" keyProperty="no" order="AFTER">
+		 	select max(no)
+		 	 from comment
+		 </selectKey>
 	</insert>
 	
 	<delete id="deleteComment" parameterType="int">

@@ -26,7 +26,6 @@ public class CommentController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int no=Integer.parseInt(request.getParameter("no"));
-
 		
 		PrintWriter out =response.getWriter();
 		List<Comment> comment=mapper.selectCommentByBoardNo(no);
@@ -35,8 +34,6 @@ public class CommentController extends HttpServlet{
         response.setCharacterEncoding("UTF-8");
         out.print(result);
         out.flush();        
-		//request.setAttribute("comment", mapper.selectCommentByNo(no));
-		//request.getRequestDispatcher("/WEB-INF/comment.jsp").forward(request, response);
-	}
+	} 
 }
 

@@ -1,6 +1,7 @@
 package kr.co.javastudy.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +27,10 @@ public class updateCompleteController extends HttpServlet{
 		Comment comment =new Comment();
 		comment.setContent(request.getParameter("comment"));
 		comment.setNo(Integer.parseInt(request.getParameter("no")));
+		int no=Integer.parseInt(request.getParameter("no"));
 		mapper.updateComment(comment);
+		PrintWriter out =response.getWriter();
+		out.print(no);
+		out.flush();
 	}
 }
