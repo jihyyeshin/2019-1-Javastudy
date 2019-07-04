@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import kr.co.javastudy.common.MyAppSqlConfig;
 import kr.co.javastudy.mapper.CommentMapper;
 import kr.co.javastudy.vo.Comment;
@@ -30,7 +32,10 @@ public class updateCompleteController extends HttpServlet{
 		int no=Integer.parseInt(request.getParameter("no"));
 		mapper.updateComment(comment);
 		PrintWriter out =response.getWriter();
-		out.print(no);
-		out.flush();
+		String result=new Gson().toJson(comment);
+		response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        out.print(result);
+        out.flush();
 	}
 }

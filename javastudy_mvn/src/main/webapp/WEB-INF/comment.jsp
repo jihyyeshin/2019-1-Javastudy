@@ -74,14 +74,11 @@ function commentEditForm(no){
 			alert("code:"+request.status+"\n"+"error:"+error);
 		},
 		success:function(data){
-			var html="";
-        	var no=data.no-1;
-            alert(data.no);
-            html+="<tr id='"+data.no+"'><td>"+data.no+"</td><td>"+data.content+"</td>";
-            html+="<td><input type='button' value='수정' onclick='commentEditForm("+data.no+")'/></td>";
-        	html+="<td><input type='button' value='삭제' onclick='commentDelete("+data.no+")'/></td></tr>";
-        	
-        	$("#"+no).append(html);
+		 	var html="";
+            html+="<tr></tr><tr id='"+data.no+"'><td>"+data.no+"</td>";
+            html+="<td><input type='text' id='update' name='update' value='"+data.content+"'></input></td>";
+        	html+="<td><input type='button' value='수정완료' onclick='updateComplete("+data.no+");'/></td>";
+			$("#"+no).html(html);
 		}
 	});
 }
@@ -95,12 +92,12 @@ function updateComplete(no){
         	no:no,
         },
         success : function(data){ 
-            getCommentList();
-        	//var html="";
-        	//html+="<tr id='"+data.no+"'><td>"+data.no+"</td><td>"+data.content+"</td>";
-        	//html+="<td><input type='button' value='수정' onclick='commentEditForm("+data.no+");'/></td>";
-        	//html+="<td><input type='button' value='삭제' onclick='commentDelete("+data.no+")'/></td></tr>";
-			//$("#"+no).html(html);
+            //getCommentList();
+        	var html="";
+        	html+="<tr id='"+data.no+"'><td>"+data.no+"</td><td>"+data.content+"</td>";
+        	html+="<td><input type='button' value='수정' onclick='commentEditForm("+data.no+");'/></td>";
+        	html+="<td><input type='button' value='삭제' onclick='commentDelete("+data.no+")'/></td></tr>";
+			$("#"+no).html(html);
         },
         error:function(request,status,error){
        }  
