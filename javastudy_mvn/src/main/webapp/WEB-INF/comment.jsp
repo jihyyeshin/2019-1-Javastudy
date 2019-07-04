@@ -94,9 +94,9 @@ function updateComplete(no){
         success : function(data){ 
             //getCommentList();
         	var html="";
-        	html+="<tr id='"+data.no+"'><td>"+data.no+"</td><td>"+data.content+"</td>";
+        	html+="<td>"+data.no+"</td><td>"+data.content+"</td>";
         	html+="<td><input type='button' value='수정' onclick='commentEditForm("+data.no+");'/></td>";
-        	html+="<td><input type='button' value='삭제' onclick='commentDelete("+data.no+")'/></td></tr>";
+        	html+="<td><input type='button' value='삭제' onclick='commentDelete("+data.no+")'/></td>";
 			$("#"+no).html(html);
         },
         error:function(request,status,error){
