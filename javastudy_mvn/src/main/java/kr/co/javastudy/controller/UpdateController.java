@@ -29,8 +29,7 @@ public class UpdateController extends HttpServlet{
 		board.setTitle(request.getParameter("title"));
 		board.setNo(Integer.parseInt(request.getParameter("no")));
 		mapper.updateBoard(board);
-//		request.setAttribute("no", board.getNo());
-//		request.getRequestDispatcher("detail.do").forward(request, response);
+
 		response.sendRedirect("detail.do?no="+board.getNo());
 	}
 	

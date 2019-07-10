@@ -30,7 +30,8 @@
 		</tr>
 	</table>
 	<jsp:include page="comment.jsp"></jsp:include>
-
+	<!-- 1. jsp 파일을 include -->
+	
 	<a href="<c:url value='updateForm.do?no=${board.no}'/>">수정</a>
 	<a href="<c:url value='delete.do?no=${board.no}'/>">삭제</a>
 	<a href="<c:url value='list.do'/>">목록</a>

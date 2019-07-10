@@ -10,7 +10,7 @@
     <br><br>
         <div>
             <div>
-                <span><strong>Comments</strong></span> <span id="cCnt"></span>
+                <span><strong>Comments</strong></span>
             </div>
             <div>
                 <table class="table">
@@ -26,18 +26,30 @@
                 </table>
             </div>
         </div>
-        <input type="hidden" id="b_code" name="b_code" value="${result.code}" />        
     </form>
 </div>
 <div class="container">
-    <!--<form id="commentListForm" name="commentListForm" method="post">-->
-        <div id="commentList">
-        </div>
-    <!-- </form>-->
+	<div id="commentList">
+	</div>
 </div>
  
 <script>
-//댓글 등록
+
+/*
+ ajax는 ajax 자체를 브라우저로 생각하고, ajax내부에서 xmlhttprequest통신을 통해 서버를 연결시켜주고, 데이터들을 ajax가 다시 받는 방식.
+ url을 통해 서버와 연결을 해주고, 이 때 해당 data를 함께 보냄.
+ ajax통신에 성공했을 때 success로 간다. 실패했을 때는 error로 간다.
+ */
+ 
+/*
+댓글을 등록할 때에는 
+1. 화면이 새로고침 되지 않아야 하고
+2. url을 새로고침 했을 때 계속적으로 등록되는 형태이면 안됨
+따라서 ajax를 사용하고, type은 Post방식을 사용한다.
+
+url을 통해 서블릿으로 간다. 이 때 댓글 데이터와 댓글이 작성되는 게시물 번호를 함께 가지고 간다.
+addCommentController으로 간다!
+ */
 function commentEnroll(){
     $.ajax({
         type:'POST',
@@ -47,14 +59,16 @@ function commentEnroll(){
         	board_no:window.location.href.split("no=")[1]
         },
         success : function(data){
+        	/*
+        	addComment.do가 성공적으로 되어 data가 받아져오면, 해당 데이터를 통해 등록된 댓글을 추가할 수 있게 한다.
+        	기존 테이블에서 하나 더 생성하여 등록된 댓글을 보여주게 된다.
+        	*/
         	var html="";
         	var no=data.no-1;
-            alert(data.no);
             html+="<tr id='"+data.no+"'><td>"+data.no+"</td><td>"+data.content+"</td>";
             html+="<td><input type='button' value='수정' onclick='commentEditForm("+data.no+")'/></td>";
-        	html+="<td><input type='button' value='삭제' onclick='commentDelete("+data.no+")'/></td></tr>";
-        	
-        	$("#"+no).append(html);
+        	html+="<td><input type='button' value='삭제' onclick='commentDelete("+data.no+")'/></td>";
+        	$("#"+no).append(html);//append를 통해 기존의 html에 더해준다.
         },
         error:function(request,status,error){
        } 
@@ -92,7 +106,6 @@ function updateComplete(no){
         	no:no,
         },
         success : function(data){ 
-            //getCommentList();
         	var html="";
         	html+="<td>"+data.no+"</td><td>"+data.content+"</td>";
         	html+="<td><input type='button' value='수정' onclick='commentEditForm("+data.no+");'/></td>";
@@ -113,7 +126,7 @@ function commentDelete(no){
         	no:no
         },
         success : function(data){
-        	$("#"+no).html("");
+        	$("#"+no).remove();//삭제
         },
         error:function(request,status,error){
        }

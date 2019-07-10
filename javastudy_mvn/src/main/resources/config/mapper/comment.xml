@@ -29,6 +29,7 @@
 	<insert id="insertComment" parameterType="comment">
 		insert into comment(board_no, content)
 		values (#{board_no}, #{content})
+		<!-- select key를 이용하여 auto_increment된 키를 받아오는데,parameterType인 comment의  no속성으로 max(no)를 받아오게 되는 것이다. -->
 		 <selectKey resultType="int" keyProperty="no" order="AFTER">
 		 	select max(no)
 		 	 from comment
