@@ -134,7 +134,11 @@ function updateComplete(no){
     });
 }
 
-//댓글 삭제
+/* 댓글 삭제
+
+댓글 삭제의 경우도 댓글 등록과 마찬가지의 이유로 post방식을 사용해야 하고, 
+deleteComplete.do url을 따라가면 DeleteCommentController로 간다. 이 때 삭제를 위해 no를 가지고 간다.
+*/
 function commentDelete(no){
 	$.ajax({
         type:'POST',
@@ -143,6 +147,7 @@ function commentDelete(no){
         	no:no
         },
         success : function(data){
+        	/* 데이터베이스에서는 삭제되었으나, html에서는 삭제되지 않았기 때문에 해당 태그를 가진 부분을 삭제해준다. */
         	$("#"+no).remove();//삭제
         },
         error:function(request,status,error){
@@ -150,12 +155,16 @@ function commentDelete(no){
         
     });
 }
-//초기 로딩 시 댓글 불러오기
+//익명함수로, 초기 로딩 시 댓글을 모두 불러오는 역할
 $(function(){
     getCommentList();
 });
 
-//댓글 불러오기 ajax
+/*
+모든 댓글을 데이터베이스에서 가져와주는 메소드이다.
+comment.do의 url을 따라가면 CommentController클래스이다.
+이 때 게시글의 번호를 알아야 하기 때문에 url에서 no를 split하여 가져간다.
+*/
 function getCommentList(){
  $.ajax({
 	 type:'GET',
@@ -168,6 +177,10 @@ function getCommentList(){
 		alert("code:"+request.status+"\n"+"error:"+error);
 	},
 	 success:function(data){
+		 /*
+		  해당 게시글의 모든 댓글을 data에 넣어 return 시켰기 때문에
+		 data의 length만큼을 html로 붙여준다.
+		 이 때 data length가 없는 경우를 구분하여 처리해준다.*/
 		 var html="";
 	     if(data.length>0){
 	        html+="<div><table class='table'>";

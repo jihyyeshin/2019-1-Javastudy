@@ -22,6 +22,7 @@ public class DeleteCommentController extends HttpServlet {
 	}
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* 가져온 no를 이용하여 데이터베이스에서 해당 no를 가진 댓글을 삭제한다. */
 		int no=Integer.parseInt(request.getParameter("no"));
 		mapper.deleteComment(no);
 	}

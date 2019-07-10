@@ -25,9 +25,11 @@ public class CommentController extends HttpServlet{
 	}
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//가져온 게시글의 번호를 통해 
 		int no=Integer.parseInt(request.getParameter("no"));
 		
 		PrintWriter out =response.getWriter();
+		//board no로 comment를 모두 받아온 후 해당 게시글의 모든 댓글을 ajax로 return한다.
 		List<Comment> comment=mapper.selectCommentByBoardNo(no);
 		String result=new Gson().toJson(comment);
 		response.setContentType("application/json");
