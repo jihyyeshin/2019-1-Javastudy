@@ -75,7 +75,18 @@ function commentEnroll(){
     });
 }
 
-//댓글 수정 form 생성
+/*
+댓글을 수정할 때에는 두 가지의 단계가 필요하다.
+1. 댓글 수정 form생성
+2. 댓글 수정 작업
+
+따라서 댓글 수정 버튼을 눌렀을 때 form을 생성하고, 수정 완료 버튼을 누르면 수정이 된 값이 보여지는 순서를 가져야 한다.
+*/
+
+/* 1. 댓글 수정 form 생성
+댓글 수정 form을 생성하는 것은, 댓글 수정 버튼을 눌렀을 때 form을 생성하고 그 form안에 기존의 댓글이 select되어 들어가 있어야 한다.
+updateCommentForm.do의 url을 따라가면 UpdateCommentController으로 간다. 이 때 select문에서는 primary key인 no만 필요하므로 data는 no만 가지고 간다.
+*/
 function commentEditForm(no){
 	$.ajax({
 		type:'GET',
@@ -88,6 +99,7 @@ function commentEditForm(no){
 			alert("code:"+request.status+"\n"+"error:"+error);
 		},
 		success:function(data){
+			//댓글 등록할 때와 동일한 방식으로 html파일을 수정한다.
 		 	var html="";
             html+="<tr></tr><tr id='"+data.no+"'><td>"+data.no+"</td>";
             html+="<td><input type='text' id='update' name='update' value='"+data.content+"'></input></td>";
@@ -96,7 +108,11 @@ function commentEditForm(no){
 		}
 	});
 }
-//댓글 수정
+/* 2. 댓글 수정 작업
+
+댓글 수정의 경우도 댓글 등록과 마찬가지의 이유로 post방식을 사용해야 하고, 
+updateComplete.do url을 따라가면 UpdateCompleteController로 간다.
+ */
 function updateComplete(no){
 	$.ajax({
         type:'POST',
@@ -105,7 +121,8 @@ function updateComplete(no){
         	comment:$("#update").val(),
         	no:no,
         },
-        success : function(data){ 
+        success : function(data){
+			//댓글 등록할 때와 동일한 방식으로 html파일을 수정한다.
         	var html="";
         	html+="<td>"+data.no+"</td><td>"+data.content+"</td>";
         	html+="<td><input type='button' value='수정' onclick='commentEditForm("+data.no+");'/></td>";

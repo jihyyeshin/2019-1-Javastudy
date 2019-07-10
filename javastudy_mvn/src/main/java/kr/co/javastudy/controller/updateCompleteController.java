@@ -18,7 +18,7 @@ import kr.co.javastudy.vo.Comment;
 @WebServlet("/updateComplete.do")
 
 public class updateCompleteController extends HttpServlet{
-	private CommentMapper mapper;
+	private CommentMapper mapper;//mapper객체를 생성하고
 	
 	public updateCompleteController() {
 		mapper = MyAppSqlConfig.getSqlSession().getMapper(CommentMapper.class);
@@ -27,10 +27,12 @@ public class updateCompleteController extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		Comment comment =new Comment();
+		//comment객체를 생성하여 update할 댓글의 내용과, 댓글의 번호를 set한다.
 		comment.setContent(request.getParameter("comment"));
 		comment.setNo(Integer.parseInt(request.getParameter("no")));
-		int no=Integer.parseInt(request.getParameter("no"));
+		//set한 내용을 바탕으로 update를 진행한다.
 		mapper.updateComment(comment);
+		//update 완료된 내용을 ajax에 return한다.
 		PrintWriter out =response.getWriter();
 		String result=new Gson().toJson(comment);
 		response.setContentType("application/json");
