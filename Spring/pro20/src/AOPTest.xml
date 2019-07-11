@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+   "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+   <bean id="calcTarget" class="com.spring.ex01.Calculator" /><!-- 타깃 클래스 빈을 지정 -->
+   <bean id="logAdvice" class="com.spring.ex01.LoggingAdvice" /><!-- 로그 기능을 하는 어드바이스 빈을 지정 -->
+   
+   <bean id="proxyCal"
+          class="org.springframework.aop.framework.ProxyFactoryBean"><!-- 타깃과 어드바이스를 엮는 역할 -->
+      <property name="target" ref="calcTarget"/><!-- 타켓 빈 -->
+      <property name="interceptorNames"><!-- 타겟 클래스의 메서드를 호출했을 때 logAdvice를 실행한다. -->
+         <list>
+            <value>logAdvice</value>
+         </list>
+      </property>
+   </bean>
+</beans>
