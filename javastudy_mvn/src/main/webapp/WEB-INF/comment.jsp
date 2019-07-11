@@ -56,16 +56,16 @@ function commentEnroll(){
         url : "addComment.do",
         data:{
         	comment:$("#comment").val(),
-        	board_no:window.location.href.split("no=")[1]
+        	board_no:window.location.href.split("no=")[1]//${param.no} 얘랑 똑같음 ~~~ param은 jsp 내부 객체
         },
         success : function(data){
         	/*
         	addComment.do가 성공적으로 되어 data가 받아져오면, 해당 데이터를 통해 등록된 댓글을 추가할 수 있게 한다.
         	기존 테이블에서 하나 더 생성하여 등록된 댓글을 보여주게 된다.
         	*/
-        	var html="";
-        	var no=data.no;
-        	var last=no+1;
+        	let html="";
+        	const no=data.no;
+        	const last=no+1;
         	/*if($("#comment").length){
         		$("#comment").html(html);
         	}*/
@@ -100,16 +100,16 @@ function commentEditForm(no){
 		type:'GET',
 		url:"updateCommentForm.do",
 		data:{
-		 no:no
+		 no:no//no만 써줘도된다
 		},
 		dataType:"json",
-		error : function(request, status, error){
+		error : function(request, status, error){//.fail
 			alert("code:"+request.status+"\n"+"error:"+error);
 		},
-		success:function(data){
+		success:function(data){//.done
 			//댓글 등록할 때와 동일한 방식으로 html파일을 수정한다.
 		 	var html="";
-			
+			//js파일로 나누기
             html+="<tr id='"+data.no+"'><td>"+data.no+"</td>";
             html+="<td><input type='text' id='update' name='update' value='"+data.content+"'></input></td>";
         	html+="<td><input type='button' value='수정완료' onclick='updateComplete("+data.no+");'/></td>";
@@ -166,7 +166,7 @@ function commentDelete(no){
 }
 //익명함수로, 초기 로딩 시 댓글을 모두 불러오는 역할
 $(function(){
-    getCommentList();
+    getCommentList();//$(document).ready(이 안에 함수);
 });
 
 /*
