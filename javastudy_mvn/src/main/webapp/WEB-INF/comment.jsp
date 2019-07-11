@@ -64,16 +64,24 @@ function commentEnroll(){
         	기존 테이블에서 하나 더 생성하여 등록된 댓글을 보여주게 된다.
         	*/
         	var html="";
-        	var no=data.no-1;
-            html+="<tr id='"+data.no+"'><td>"+data.no+"</td><td>"+data.content+"</td>";
+        	var no=data.no;
+        	var last=no+1;
+        	/*if($("#comment").length){
+        		$("#comment").html(html);
+        	}*/
+        	
+            html+="<td>"+data.no+"</td><td>"+data.content+"</td>";
             html+="<td><input type='button' value='수정' onclick='commentEditForm("+data.no+")'/></td>";
         	html+="<td><input type='button' value='삭제' onclick='commentDelete("+data.no+")'/></td>";
-        	$("#"+no).append(html);//append를 통해 기존의 html에 더해준다.
-        },
+        	$("#"+no).html(html);
+        	$("#"+no).parent().append("<tr id='"+last+"'></tr>");
+        	document.getElementById("comment").value='';
+        }, 
         error:function(request,status,error){
        } 
     });
 }
+
 
 /*
 댓글을 수정할 때에는 두 가지의 단계가 필요하다.
@@ -101,10 +109,11 @@ function commentEditForm(no){
 		success:function(data){
 			//댓글 등록할 때와 동일한 방식으로 html파일을 수정한다.
 		 	var html="";
-            html+="<tr></tr><tr id='"+data.no+"'><td>"+data.no+"</td>";
+			
+            html+="<tr id='"+data.no+"'><td>"+data.no+"</td>";
             html+="<td><input type='text' id='update' name='update' value='"+data.content+"'></input></td>";
         	html+="<td><input type='button' value='수정완료' onclick='updateComplete("+data.no+");'/></td>";
-			$("#"+no).html(html);
+        	$("#"+no).html(html);
 		}
 	});
 }
@@ -183,12 +192,14 @@ function getCommentList(){
 		 이 때 data length가 없는 경우를 구분하여 처리해준다.*/
 		 var html="";
 	     if(data.length>0){
+			var last=data[data.length-1].no+1;
 	        html+="<div><table class='table'>";
 	        for(i=0;i<data.length;i++){
 	            html+="<tr id='"+data[i].no+"'><td>"+data[i].no+"</td><td>"+data[i].content+"</td>";
 	        	html+="<td><input type='button' value='수정' onclick='commentEditForm("+data[i].no+");'/></td>";
 	        	html+="<td><input type='button' value='삭제' onclick='commentDelete("+data[i].no+")'/></td></tr>";
 	        }
+	        html+="<tr id='"+last+"'></tr>";
 	        html+="</table></div>";
 	      }else{
 	         html+="<div><table class='table'>";
