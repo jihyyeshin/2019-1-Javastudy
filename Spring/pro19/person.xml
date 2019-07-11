@@ -7,4 +7,11 @@
 			<value>홍길동</value>
 		</property>
 	</bean>
+	<bean id="personService1" class="com.spring.ex02.PersonServiceImpl"><!-- 매개변수가 한 개 일 때 -->
+		<constructor-arg value="이순신"/><!-- 생성자를 호출했을 때 생성자 매개변수로 해당 value로 초기화 -->
+	</bean>
+	<bean id="personService2" class="com.spring.ex02.PersonServiceImpl"><!-- 매개변수가 두 개 일 때 -->
+		<constructor-arg value="손흥민"/>
+		<constructor-arg value="23"/>
+	</bean>
 </beans>

@@ -6,12 +6,14 @@ import org.springframework.core.io.FileSystemResource;
 
 public class PersonTest2 {
 	public static void main(String[] args) {
-		BeanFactory factory = new XmlBeanFactory(new FileSystemResource("person.xml"));
-		PersonService person1 = (PersonService) factory.getBean("personService1");
+		/* ex01苞 悼老 */
+		BeanFactory factory=new XmlBeanFactory(new FileSystemResource("person.xm;"));
+		
+		PersonService person1 = (PersonService) factory.getBean("personService1");//personService1俊辑 后 积己
 		person1.sayHello();
 		System.out.println();
 
-		PersonService person2 = (PersonService) factory.getBean("personService2");
+		PersonService person2 = (PersonService) factory.getBean("personService2");//personService2俊辑 后 积己
 		person2.sayHello();
 	}
 }
