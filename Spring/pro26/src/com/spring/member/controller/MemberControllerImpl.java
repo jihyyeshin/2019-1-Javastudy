@@ -16,17 +16,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.member.service.MemberService;
 import com.spring.member.vo.MemberVO;
 
-@Controller("memberController")//ºóÀ» ÀÚµ¿ »ı¼º
-public class MemberControllerImpl   implements MemberController {
+@Controller("memberController")//ë¹ˆì„ ìë™ ìƒì„±
+public class MemberControllerImpl implements MemberController {
 	/*
-	 ºóÀ» ÀÚµ¿ ÁÖÀÔ
+	 ë¹ˆì„ ìë™ ì£¼ì…
 	 */
 	@Autowired
 	private MemberService memberService;
 	@Autowired
 	MemberVO memberVO ;
 	
-	//ÇØ´ç ¸Ş¼­µå¸¦ È£ÃâÇÏµµ·Ï ¸ÅÇÎ
+	//í•´ë‹¹ ë©”ì„œë“œë¥¼ í˜¸ì¶œí•˜ë„ë¡ ë§¤í•‘
 	@Override
 	@RequestMapping(value="/member/listMembers.do" ,method = RequestMethod.GET)
 	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller("loginController")//ÄÁÆ®·Ñ·¯ ºó »ı¼º
+@Controller("loginController")//ì»¨íŠ¸ë¡¤ëŸ¬ ë¹ˆ ìƒì„±
 public class LoginController {
 	@RequestMapping(value = { "/test/loginForm.do", "/test/loginForm2.do" }, method = { RequestMethod.GET })
 	public ModelAndView loginForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -21,7 +21,7 @@ public class LoginController {
 		mav.setViewName("loginForm");
 		return mav;
 	}
-	//get, post ¹æ½Ä ¿äÃ» ½Ã ¸ğµÎ Ã³¸®ÇØÁØ´Ù.
+	//get, post ë°©ì‹ ìš”ì²­ ì‹œ ëª¨ë‘ ì²˜ë¦¬í•´ì¤€ë‹¤.
     @RequestMapping(value = "/test/login.do", method={RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
@@ -43,7 +43,7 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("result");
 		
-		// getParameter()¸Ş¼­µå¸¦ ÀÌ¿ëÇÏÁö ¾Ê°í ÇØ°áÇÑ´Ù.
+		// getParameter()ë©”ì„œë“œë¥¼ ì´ìš©í•˜ì§€ ì•Šê³  í•´ê²°í•œë‹¤.
 		// String userID = request.getParameter("userID");
 		// String userName = request.getParameter("userName");
 		
@@ -55,8 +55,8 @@ public class LoginController {
 		return mav;
 	}
 	*/
-	//required¸¦ true·Î ÇÏ¸é ¹İµå½Ã ¸Å°³º¯¼ö¸¦ Àü´ŞÇØ¾ßÇÔ. µğÆúÆ®°¡ true
-	//required¸¦ false·Î ÇÏ¸é ¸Å°³º¯¼ö¸¦ Àü´ŞÇÏÁö ¾Ê´Â °æ¿ì nullÀ» ÇÒ´ç
+	//requiredë¥¼ trueë¡œ í•˜ë©´ ë°˜ë“œì‹œ ë§¤ê°œë³€ìˆ˜ë¥¼ ì „ë‹¬í•´ì•¼í•¨. ë””í´íŠ¸ê°€ true
+	//requiredë¥¼ falseë¡œ í•˜ë©´ ë§¤ê°œë³€ìˆ˜ë¥¼ ì „ë‹¬í•˜ì§€ ì•ŠëŠ” ê²½ìš° nullì„ í• ë‹¹
 
 	@RequestMapping(value = "/test/login2.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView login2(@RequestParam("userID") String userID, 
@@ -79,9 +79,9 @@ public class LoginController {
 	}
 	
 
-	//ÀÏÀÏÀÌ º¸³»Áö ¾Ê°í map¿¡ ÀúÀå
+	//ì¼ì¼ì´ ë³´ë‚´ì§€ ì•Šê³  mapì— ì €ì¥
 	@RequestMapping(value = "/test/login3.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView login3(@RequestParam Map<String, String> info,//MapÀ» »ı¼º
+	public ModelAndView login3(@RequestParam Map<String, String> info,//Mapì„ ìƒì„±
 			                   HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
@@ -91,12 +91,12 @@ public class LoginController {
 		System.out.println("userID: "+userID);
 		System.out.println("userName: "+userName);
 		
-		mav.addObject("info", info);//info object»ı¼º
+		mav.addObject("info", info);//info objectìƒì„±
 		mav.setViewName("result");
 		return mav;
 	}
 	
-	//VO Å¬·¡½ºÀÇ ¼Ó¼º°ú µ¿ÀÏÇÑ ¼Ó¼º, jspÆÄÀÏ¿¡¼­ info¸¦ ÀÌ¿ëÇØ ¹Ù·Î loginVO¼Ó¼º¿¡ Á¢±ÙÇÒ ¼ö ÀÖ´Ù.
+	//VO í´ë˜ìŠ¤ì˜ ì†ì„±ê³¼ ë™ì¼í•œ ì†ì„±, jspíŒŒì¼ì—ì„œ infoë¥¼ ì´ìš©í•´ ë°”ë¡œ loginVOì†ì„±ì— ì ‘ê·¼í•  ìˆ˜ ìˆë‹¤.
 	@RequestMapping(value = "/test/login4.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView login4(@ModelAttribute("info") LoginVO loginVO,
 			                   HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -112,9 +112,9 @@ public class LoginController {
 	public String login5(Model model,
 			                   HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		//jsp¿¡ Àü´ŞÇÒ µ¥ÀÌÅÍ¸¦ model¿¡ addAttribute¸¦ ÀÌ¿ëÇÏ¿© ¹ÙÀÎµù
+		//jspì— ì „ë‹¬í•  ë°ì´í„°ë¥¼ modelì— addAttributeë¥¼ ì´ìš©í•˜ì—¬ ë°”ì¸ë”©
 		model.addAttribute("userID", "hong");
-		model.addAttribute("userName", "È«±æµ¿");
+		model.addAttribute("userName", "í™ê¸¸ë™");
 		return "result";
 	}	
 }
